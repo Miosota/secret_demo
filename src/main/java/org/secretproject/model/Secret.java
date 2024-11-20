@@ -24,6 +24,17 @@ public class Secret {
     @Column(name = "times_to_view")
     private int timesToView;
 
+    public Secret(
+        User user, 
+        String secretLogin, 
+        String secretPassword,
+        int timesToView){
+            this.user = user;
+            this.secretLogin = secretLogin;
+            this.secretPassword = secretPassword;
+            this.timesToView = timesToView;
+        }
+
 
     //setters
     public void setId(Long id) {
@@ -44,5 +55,11 @@ public class Secret {
 
     public void setTimesToView (int timesToView) {
         this.timesToView = timesToView;
+    }
+
+      //getters
+
+      public Long getId(){
+        return id;
     }
 }

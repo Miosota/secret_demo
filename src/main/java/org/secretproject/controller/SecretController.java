@@ -5,6 +5,7 @@ import java.util.List;
 import org.secretproject.model.Secret;
 import org.secretproject.service.SecretService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/secrets")
 public class SecretController {
 
-    private final SecretService secretService;
-
     @Autowired
-    public SecretController(SecretService secretService) {
-        this.secretService = secretService;
-    }
+    SecretService secretService;
+
+    // @Autowired
+    // public SecretController(SecretService secretService) {
+    //     this.secretService = secretService;
+    // }
 
     @GetMapping
     public List<Secret> getAllSecrets() {

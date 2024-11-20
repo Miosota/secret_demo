@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecretService {
     
-    private final SecretRepository secretRepository;
+    @Autowired(required = false)
+    SecretRepository secretRepository;
 
-    @Autowired
-    public SecretService(SecretRepository secretRepository) {
-        this.secretRepository = secretRepository;
-    }
+    // @Autowired
+    // public SecretService(SecretRepository secretRepository) {
+    //     this.secretRepository = secretRepository;
+    // }
 
     public List<Secret> getAllSecrets() {
         return secretRepository.findAll();

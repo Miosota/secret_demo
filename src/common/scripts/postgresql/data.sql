@@ -13,7 +13,7 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.users
     OWNER to postgres;
-    
+
 -- Table: public.secrets
 
 -- DROP TABLE IF EXISTS public.secrets;

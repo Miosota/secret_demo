@@ -14,6 +14,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    public User (String name) {
+        this.name = name;
+    }
+
     //setters
     public void setId(Long id) {
         this.id = id;
@@ -21,6 +25,12 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    //getters
+
+    public Long getId(){
+        return id;
     }
 
 

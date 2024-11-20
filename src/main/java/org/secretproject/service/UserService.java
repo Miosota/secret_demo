@@ -3,34 +3,35 @@ package org.secretproject.service;
 import java.util.List;
 
 import org.secretproject.model.User;
-import org.secretproject.repository.UserRepository;
+import org.secretproject.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    @Autowired(required = false)
+    UsersRepository usersRepository;
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    // @Autowired(required = false)
+    // public UserService(UsersRepository userRepository) {
+    //     this.usersRepository = userRepository;
+    // }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return usersRepository.findAll();
     }
 
     public User getUserById(Long id){
-        return userRepository.findById(id).orElse(null);
+        return usersRepository.findById(id).orElse(null);
     }
 
     public User createUser(User user){
-        return userRepository.save(user);
+        return usersRepository.save(user);
     }
 
     public void deleteUser(Long id){
-        userRepository.deleteById(id);
+        usersRepository.deleteById(id);
     }
 
 }
