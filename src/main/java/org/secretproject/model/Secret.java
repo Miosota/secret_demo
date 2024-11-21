@@ -16,23 +16,18 @@ public class Secret {
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User user;
 
-    @Column(name = "secret_login")
-    private String secretLogin;
-
-    @Column(name = "secret_password")
-    private String secretPassword;
+    @Column(name = "secret_text")
+    private String secretText;
 
     @Column(name = "times_to_view")
     private int timesToView;
 
     public Secret(
             User user, 
-            String secretLogin, 
-            String secretPassword,
+            String secretText,
             int timesToView){
         this.user = user;
-        this.secretLogin = secretLogin;
-        this.secretPassword = secretPassword;
+        this.secretText = secretText;
         this.timesToView = timesToView;
     }
 
@@ -50,12 +45,8 @@ public class Secret {
         this.user = user;
     }
 
-    public void setSecretPassword (String secretLogin) {
-        this.secretLogin = secretLogin;
-    }
-
-    public void setSecretLogin (String secretPassword) {
-        this.secretPassword = secretPassword;
+    public void setSecretText (String secretText) {
+        this.secretText = secretText;
     }
 
     public void setTimesToView (int timesToView) {

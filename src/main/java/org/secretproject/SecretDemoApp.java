@@ -45,7 +45,7 @@ public class SecretDemoApp {
             User newUser = new User("TestUser");
             userService.createUser(newUser);
 
-            Secret testSecret = new Secret(newUser,"testLogin","testPassword", 3);
+            Secret testSecret = new Secret(newUser,"secretText", 3);
             secretService.createSecret(testSecret);
             
             System.out.println("Hi again");

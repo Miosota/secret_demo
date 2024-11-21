@@ -20,11 +20,10 @@ ALTER TABLE IF EXISTS public.users
 
 CREATE TABLE IF NOT EXISTS public.secrets
 (
-    secret_id integer NOT NULL DEFAULT nextval('secrets_secret_id_seq'::regclass),
-    owner_id integer,
-    secret_login character varying(60) COLLATE pg_catalog."default",
-    secret_password character varying(60) COLLATE pg_catalog."default",
-    times_to_view integer,
+    secret_id bigint NOT NULL DEFAULT nextval('secrets_secret_id_seq'::regclass),
+    owner_id bigint NOT NULL,
+    times_to_view integer NOT NULL,
+    secret_text character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT secrets_pkey PRIMARY KEY (secret_id),
     CONSTRAINT secrets_owner_id_fkey FOREIGN KEY (owner_id)
         REFERENCES public.users (user_id) MATCH SIMPLE
