@@ -12,23 +12,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+// @ComponentScan
 // @EnableJpaRepositories
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, XADataSourceAutoConfiguration.class})
+// @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, XADataSourceAutoConfiguration.class})
 public class SecretDemoApp {
 
-    // @Autowired
+    @Autowired
     UserService userService;
-    // @Autowired
+    @Autowired
     SecretService secretService;
 
-    @Autowired
-    public SecretDemoApp (UserService userService, SecretService secretService) {
-        this.userService = userService;
-        this.secretService = secretService;
-    }
+    // @Autowired
+    // public SecretDemoApp (UserService userService, SecretService secretService) {
+    //     this.userService = userService;
+    //     this.secretService = secretService;
+    // }
     
     public static void main(String[] args) {
         SpringApplication.run(SecretDemoApp.class, args);

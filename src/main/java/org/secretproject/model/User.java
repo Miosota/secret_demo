@@ -1,6 +1,8 @@
 package org.secretproject.model;
 
-import javax.persistence.*;
+// import javax.persistence.*;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -16,6 +18,10 @@ public class User {
 
     public User (String name) {
         this.name = name;
+    }
+
+    public User () {
+      
     }
 
     //setters

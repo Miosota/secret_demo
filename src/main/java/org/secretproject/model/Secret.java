@@ -1,6 +1,7 @@
 package org.secretproject.model;
 
-import javax.persistence.*;
+// import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "secrets")
@@ -25,15 +26,19 @@ public class Secret {
     private int timesToView;
 
     public Secret(
-        User user, 
-        String secretLogin, 
-        String secretPassword,
-        int timesToView){
-            this.user = user;
-            this.secretLogin = secretLogin;
-            this.secretPassword = secretPassword;
-            this.timesToView = timesToView;
-        }
+            User user, 
+            String secretLogin, 
+            String secretPassword,
+            int timesToView){
+        this.user = user;
+        this.secretLogin = secretLogin;
+        this.secretPassword = secretPassword;
+        this.timesToView = timesToView;
+    }
+
+    public Secret(){
+      
+    }
 
 
     //setters
