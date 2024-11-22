@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// @CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -29,22 +30,22 @@ public class UserController {
     //     this.userService = userService;
     // }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<User> getAllUsers(){
         return userService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id={id}")
     public User getUserById(@PathVariable("id") Long id){
         return userService.findById(id).orElse(null);
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public User createUser(@RequestBody User user){
         return userService.save(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id={id}")
     public void deleteUser(@PathVariable("id") Long id){
         userService.deleteById(id);
     }
