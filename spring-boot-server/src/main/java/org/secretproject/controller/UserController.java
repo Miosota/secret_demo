@@ -3,7 +3,6 @@ package org.secretproject.controller;
 import java.util.List;
 
 import org.secretproject.model.User;
-import org.secretproject.repository.UsersRepository;
 import org.secretproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,30 +22,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    UsersRepository userService;
-
-    // @Autowired
-    // public UserController(UserService userService) {
-    //     this.userService = userService;
-    // }
+    UserService userService;
 
     @GetMapping("/getAll")
     public List<User> getAllUsers(){
-        return userService.findAll();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/id={id}")
     public User getUserById(@PathVariable("id") Long id){
-        return userService.findById(id).orElse(null);
+        return userService.getUserById(id);
     }
 
     @PostMapping("/createUser")
     public User createUser(@RequestBody User user){
-        return userService.save(user);
+        return userService.createUser(user);
     }
 
     @DeleteMapping("/id={id}")
     public void deleteUser(@PathVariable("id") Long id){
-        userService.deleteById(id);
+        userService.deleteUser(id);
     }
 }

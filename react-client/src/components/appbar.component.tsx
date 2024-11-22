@@ -8,7 +8,7 @@ export default function AppBar() {
         <div className="appbar">
           <NavBar>
             <ToolBar>
-                <h1>Spring Boot React Full Stack Application</h1>
+                <h1>My test application</h1>
             </ToolBar>
           </NavBar>
         </div>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:8090")
+@CrossOrigin
 @RestController
 @RequestMapping("/secrets")
 public class SecretController {
@@ -23,34 +23,29 @@ public class SecretController {
     @Autowired
     SecretService secretService;
 
-    // @Autowired
-    // public SecretController(SecretService secretService) {
-    //     this.secretService = secretService;
-    // }
-
-    @GetMapping
+    @GetMapping("/getAll")
     public List<Secret> getAllSecrets() {
         return secretService.getAllSecrets();
     }
 
-    @GetMapping("/{id}") 
-    public Secret getSecretById (@PathVariable Long id) {
+    @GetMapping("/id={id}") 
+    public Secret getSecretById (@PathVariable("id") Long id) {
         return secretService.getSecretById(id);
     }
 
-    @PostMapping
+    @PostMapping("/createSecret")
     public Secret createSecret (@RequestBody Secret secret){
         return secretService.createSecret(secret);
     }
 
-    @PutMapping("/{id}")
-    public Secret updateSecret (@PathVariable Long id, @RequestBody Secret secret){
+    @PutMapping("/id={id}")
+    public Secret updateSecret (@PathVariable("id") Long id, @RequestBody Secret secret){
         secret.setId(id);
         return secretService.updateSecret(secret);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteSecret (@PathVariable Long id){
+    @DeleteMapping("/id={id}")
+    public void deleteSecret (@PathVariable("id") Long id){
         secretService.deleteSecret(id);
     }
 

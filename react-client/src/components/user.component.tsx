@@ -5,20 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-// interface RouterProps {
-//     id: string;
-// }
-
-// let {id} = useParams();
-
-// type State = {
-//     name: string,
-// }
-
-// const UserComponent: React.FC = () => {
-
-// }
-
 export default function User() {
 
     const [name, setName] = useState<string>('');
@@ -49,6 +35,10 @@ export default function User() {
                 </Form.Group>
                 <Form.Group className="secretText">
                     <Form.Label>Secret text</Form.Label>
+                    <Form.Control type="text" placeholder="Secret text"/>
+                </Form.Group>
+                <Form.Group className="timesToView">
+                    <Form.Label>Amount of users to show the secret</Form.Label>
                     <Form.Control type="text" placeholder="Secret text"/>
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>Generate Link</Button>

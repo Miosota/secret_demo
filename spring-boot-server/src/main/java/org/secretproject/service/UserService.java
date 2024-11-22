@@ -22,11 +22,6 @@ public class UserService {
     @Autowired
     private UsersRepository usersRepository;
 
-    // @Autowired(required = false)
-    // public UserService(UsersRepository userRepository) {
-    //     this.usersRepository = userRepository;
-    // }
-
     public List<User> getAllUsers() {
         return this.usersRepository.findAll();
     }
