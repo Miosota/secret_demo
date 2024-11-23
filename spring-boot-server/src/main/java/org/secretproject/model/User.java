@@ -1,7 +1,5 @@
 package org.secretproject.model;
 
-// import javax.persistence.*;
-
 import jakarta.persistence.*;
 
 @Entity

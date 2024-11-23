@@ -5,9 +5,11 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-export default function User() {
+export default function CreateSecretComponent() {
 
     const [name, setName] = useState<string>('');
+    const [secretText, setSecretText] = useState<string>('');
+    const [timesToView, setTimesToView] = useState<number>();
 
     const handleClick=(e: React.FormEvent<HTMLButtonElement>)=> {
         e.preventDefault();
@@ -16,9 +18,17 @@ export default function User() {
         fetch("http://localhost:8090/users/createUser",{
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(user)
+            body:JSON.stringify({name})
         }).then(()=>{
             console.log("New user added");
+
+        fetch("http://localhost:8090/secrets/createSecret",{
+        method: "POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({name,timesToView})
+        }).then(()=>{
+            console.log("New secret added");
+        })
 
     })
     }
@@ -35,11 +45,16 @@ export default function User() {
                 </Form.Group>
                 <Form.Group className="secretText">
                     <Form.Label>Secret text</Form.Label>
-                    <Form.Control type="text" placeholder="Secret text"/>
+                    <Form.Control type="text" placeholder="Secret text"
+                    value={secretText}
+                    onChange={(e)=>setSecretText(e.target.value)}
+                    />
                 </Form.Group>
                 <Form.Group className="timesToView">
                     <Form.Label>Amount of users to show the secret</Form.Label>
-                    <Form.Control type="text" placeholder="Secret text"/>
+                    <Form.Control type="text" placeholder="Secret text"
+                    value={timesToView}
+                    onChange={(e)=>setTimesToView(parseInt(e.target.value))}/>
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>Generate Link</Button>
             </Form>

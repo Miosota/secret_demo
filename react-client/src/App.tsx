@@ -5,17 +5,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 import AppBar from './components/appbar.component';
-import User from './components/user.component';
+import CreateSecretComponent from './components/createsecret.component';
 
-// import UserComponent from "./components/user.component";
 // import SecretComponent from "./components/secret.component";
 
 function App() {
   return (
     <div className="App">      
-      <h1>Hi, people</h1>
       <AppBar/>
-      <User/>
+      <CreateSecretComponent/>
     </div>
   );
 }

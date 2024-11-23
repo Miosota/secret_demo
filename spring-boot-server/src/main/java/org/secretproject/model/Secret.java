@@ -1,7 +1,7 @@
 package org.secretproject.model;
 
-// import javax.persistence.*;
 import jakarta.persistence.*;
+import org.secretproject.model.User;
 
 @Entity
 @Table(name = "secrets")
