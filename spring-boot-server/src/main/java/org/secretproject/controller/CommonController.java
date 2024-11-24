@@ -1,8 +1,10 @@
 package org.secretproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.secretproject.model.CommonObject;
+import org.secretproject.model.Secret;
 import org.secretproject.model.User;
 import org.secretproject.service.SecretService;
 import org.secretproject.service.UserService;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 
 @RestController
 @RequestMapping("/secret_demo")
@@ -27,6 +32,8 @@ public class CommonController {
     UserService userService;
     @Autowired
     SecretService secretService;
+    @Autowired
+    EntityManager entityManager;
 
     // @GetMapping("/getAll")
     // public List<User> getAllUsers(){
@@ -39,9 +46,23 @@ public class CommonController {
     // }
 
     @PostMapping("/createobjects")
-    public User createUser(@RequestBody CommonObject commonObject){
+    public void createUser(@RequestBody CommonObject commonObject){
         User user = new User(commonObject.getUserName());
-        return userService.createUser(user);
+        Secret secret = new Secret(user, commonObject.getSecretText(), commonObject.getTimesToView());
+        List<Secret> secretList = new ArrayList<>();
+        secretList.add(secret);
+        user.setSecrets(secretList);
+        EntityTransaction transaction = entityManager.getTransaction();
+    transaction.begin();
+    entityManager.persist(user);
+    entityManager.flush();
+    transaction.commit();
+
+    entityManager.clear();
+        userService.createUser(user);
+        System.out.println("Test : userId: "+user.getId());
+        secretService.createSecret(secret);
+        // return ;
     }
 
     // @DeleteMapping("/id={id}")

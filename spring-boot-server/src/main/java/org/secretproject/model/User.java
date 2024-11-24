@@ -1,5 +1,8 @@
 package org.secretproject.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +16,9 @@ public class User {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    private List<Secret> secretList = new ArrayList<>();
 
     public User (String name) {
         this.name = name;
@@ -29,6 +35,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSecrets(List<Secret> secretList){
+        this.secretList.addAll(secretList);
     }
 
     //getters

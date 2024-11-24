@@ -7,18 +7,19 @@ import Button from 'react-bootstrap/Button';
 
 export default function CreateSecretComponent() {
 
-    const [name, setName] = useState<string>('');
+    const [userName, setName] = useState<string>('');
     const [secretText, setSecretText] = useState<string>('');
     const [timesToView, setTimesToView] = useState<number>();
 
     const handleClick=(e: React.FormEvent<HTMLButtonElement>)=> {
         e.preventDefault();
-        const user={name};
+        const user={userName};
         console.log(user);
+        console.log({userName});console.log({secretText});console.log({timesToView});
         fetch("http://localhost:8090/secret_demo/createobjects",{
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({name, secretText, timesToView})
+            body:JSON.stringify({userName, secretText, timesToView})
         }).then((response) => response.text())
             .then((responseText) => {
           console.log(responseText);
@@ -40,7 +41,7 @@ export default function CreateSecretComponent() {
                 <Form.Group className="userName">
                     <Form.Label>User name</Form.Label>
                     <Form.Control type="text" placeholder="User name" 
-                    value={name}
+                    value={userName}
                     onChange={(e)=>setName(e.target.value)}
                     />
                 </Form.Group>
