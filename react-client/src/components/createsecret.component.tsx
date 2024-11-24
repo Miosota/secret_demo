@@ -15,22 +15,23 @@ export default function CreateSecretComponent() {
         e.preventDefault();
         const user={name};
         console.log(user);
-        fetch("http://localhost:8090/users/createUser",{
+        fetch("http://localhost:8090/secret_demo/createobjects",{
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({name})
-        }).then(()=>{
-            console.log("New user added");
-
-        fetch("http://localhost:8090/secrets/createSecret",{
-        method: "POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({name,timesToView})
-        }).then(()=>{
-            console.log("New secret added");
+            body:JSON.stringify({name, secretText, timesToView})
+        }).then((response) => response.text())
+            .then((responseText) => {
+          console.log(responseText);
         })
+        // fetch("http://localhost:8090/secrets/createSecret",{
+        // method: "POST",
+        // headers:{"Content-Type":"application/json"},
+        // body:JSON.stringify({secretText,timesToView})
+        // }).then(()=>{
+        //     console.log("New secret added");
+        // })
 
-    })
+    
     }
 
     return (
