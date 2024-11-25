@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/secrets")
+@CrossOrigin
 public class SecretController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class SecretController {
         return secretService.getAllSecrets();
     }
 
-    @GetMapping("/id={id}") 
+    @GetMapping("/secretid={id}") 
     public Secret getSecretById (@PathVariable("id") Long id) {
         return secretService.getSecretById(id);
     }

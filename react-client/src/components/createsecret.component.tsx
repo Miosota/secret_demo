@@ -1,5 +1,4 @@
-import React, { Component, ChangeEvent, useState} from "react";
-import {useParams } from "react-router-dom";
+import React, { useState} from "react";
 
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -26,15 +25,7 @@ export default function CreateSecretComponent() {
                 setLinkToShare(responseText);
                 console.log(responseText);
         })
-        // fetch("http://localhost:8090/secrets/createSecret",{
-        // method: "POST",
-        // headers:{"Content-Type":"application/json"},
-        // body:JSON.stringify({secretText,timesToView})
-        // }).then(()=>{
-        //     console.log("New secret added");
-        // })
-
-    
+          
     }
 
     return (

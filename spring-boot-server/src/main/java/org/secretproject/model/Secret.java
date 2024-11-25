@@ -58,4 +58,12 @@ public class Secret {
       public Long getId(){
         return id;
     }
+
+    public String getSecretText(){
+        return this.secretText;
+    }
+
+    public int getTimesToView () {
+        return this.timesToView;
+    }
 }

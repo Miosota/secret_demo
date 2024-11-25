@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -9,9 +9,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <App /> }>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
 );
 
 

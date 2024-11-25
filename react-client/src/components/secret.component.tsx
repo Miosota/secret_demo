@@ -1,55 +1,40 @@
 import React, { Component, ChangeEvent, useState} from "react";
-import {useParams } from "react-router-dom";
 
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import User from "./createsecret.component";
-import IUserData from "../types/user.type"
+// const [secretId, setSecretId] = useState<number>();
 
-export default function Secret() {
-
-    const [user, setUser] = useState<IUserData>();
-    const [secretText, setSecretText] = useState<string>('');
-    const [timesToView, setTimesToView] = useState<number>();
-
-    // const handleClick=(e: React.FormEvent<HTMLButtonElement>)=> {
-        // e.preventDefault();
-        // const user={name};
-        // console.log(user);
-        // fetch("http://localhost:8090/users/createUser",{
-        //     method: "POST",
-        //     headers:{"Content-Type":"application/json"},
-        //     body:JSON.stringify(user)
-        // }).then(()=>{
-        //     console.log("New user added");
-        // })
-
-        // fetch("http://localhost:8090/secrets/createSecret",{
-        //     method: "POST",
-        //     headers:{"Content-Type":"application/json"},
-        //     body:JSON.stringify(secret)
-        // }).then(()=>{
-        //     console.log("New secret added");
-        // })
-
-
+    // function geURLParam(): number | null{
+    //     const queryParams = new URLSearchParams(location.search);
+    //     const param = queryParams.get('id');
+    //     const secretId = param !== null ? parseInt(param) : 0;
+    //     // setSecretId(parseInt(param));
+    //     return secretId;
     // }
+
+export default function SecretComponent() {
+
+    const [secretText, setSecretText] = useState<string>('');
+    // const [secretId, setSecretId] = useState<number>();
+
+    const urlString = window.location.search;
+    const urlParams = new URLSearchParams(urlString);
+    const param = urlParams.get('id');
+    const secretId = param !== null ? parseInt(param) : 0;
+    if(secretId !== 0) {
+
+        fetch("http://localhost:8090/secrets/secretid="+secretId,{
+            method: "GET",
+            headers:{"Content-Type":"application/json"}
+        }).then((response) => response.text())
+            .then((responseText) => {
+
+            console.log(responseText);
+
+        })
+    }
 
     return (
             <>
-                {/* <Form.Group className="secretText">
-                    <Form.Label>Secret text</Form.Label>
-                    <Form.Control type="text" placeholder="Secret text"
-                    value={secretText}
-                    onChange={(e)=>setSecretText(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className="timesToView">
-                    <Form.Label>Amount of users to show the secret</Form.Label>
-                    <Form.Control type="text" placeholder="Secret text"
-                    value={timesToView}
-                    onChange={(e)=>setTimesToView(e.target.value)}/>
-                </Form.Group> */}
+
             </>
     );
 
