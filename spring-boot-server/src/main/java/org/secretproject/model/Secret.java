@@ -13,7 +13,7 @@ public class Secret {
     private Long id;
 
     @ManyToOne
-    // @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User user;
 
     @Column(name = "secret_text")

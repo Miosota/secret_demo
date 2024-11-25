@@ -10,6 +10,7 @@ import org.secretproject.service.SecretService;
 import org.secretproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceContext;
 
 
 @RestController
@@ -32,41 +34,26 @@ public class CommonController {
     UserService userService;
     @Autowired
     SecretService secretService;
-    @Autowired
-    EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    // @GetMapping("/getAll")
-    // public List<User> getAllUsers(){
-    //     return userService.getAllUsers();
-    // }
-
-    // @GetMapping("/id={id}")
-    // public User getUserById(@PathVariable("id") Long id){
-    //     return userService.getUserById(id);
-    // }
 
     @PostMapping("/createobjects")
+    @Transactional
     public void createUser(@RequestBody CommonObject commonObject){
         User user = new User(commonObject.getUserName());
         Secret secret = new Secret(user, commonObject.getSecretText(), commonObject.getTimesToView());
+
         List<Secret> secretList = new ArrayList<>();
         secretList.add(secret);
         user.setSecrets(secretList);
-        EntityTransaction transaction = entityManager.getTransaction();
-    transaction.begin();
-    entityManager.persist(user);
-    entityManager.flush();
-    transaction.commit();
+        entityManager.persist(user);
+        entityManager.flush();
+        entityManager.clear();
 
-    entityManager.clear();
         userService.createUser(user);
-        System.out.println("Test : userId: "+user.getId());
+        System.out.println("Test : userId:"+user.getId());
         secretService.createSecret(secret);
-        // return ;
     }
 
-    // @DeleteMapping("/id={id}")
-    // public void deleteUser(@PathVariable("id") Long id){
-    //     userService.deleteUser(id);
-    // }
 }
