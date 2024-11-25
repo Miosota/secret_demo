@@ -68,7 +68,7 @@ public class CommonController {
         .path("/secrets")
         .queryParam("id", secret.getId()).build();
 
-    return new ResponseEntity<String>("Test : userId:"+user.getId()+ " ; secretData: id: "+secret.getId() + " : share secret with your friends : "+builder.toString(), HttpStatus.OK);
+    return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
 
 }

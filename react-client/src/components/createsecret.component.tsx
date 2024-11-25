@@ -10,6 +10,7 @@ export default function CreateSecretComponent() {
     const [userName, setName] = useState<string>('');
     const [secretText, setSecretText] = useState<string>('');
     const [timesToView, setTimesToView] = useState<number>();
+    const [linkToShare, setLinkToShare] = useState<string>();
 
     const handleClick=(e: React.FormEvent<HTMLButtonElement>)=> {
         e.preventDefault();
@@ -22,7 +23,8 @@ export default function CreateSecretComponent() {
             body:JSON.stringify({userName, secretText, timesToView})
         }).then((response) => response.text())
             .then((responseText) => {
-          console.log(responseText);
+                setLinkToShare(responseText);
+                console.log(responseText);
         })
         // fetch("http://localhost:8090/secrets/createSecret",{
         // method: "POST",
@@ -60,6 +62,7 @@ export default function CreateSecretComponent() {
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>Generate Link</Button>
             </Form>
+            <h1 className="link_to_share">Share with your friends: <a href={linkToShare}>{linkToShare}</a></h1>
         </Container>
     );
 }
