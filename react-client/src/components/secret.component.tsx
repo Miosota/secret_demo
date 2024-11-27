@@ -1,14 +1,6 @@
 import React, { Component, ChangeEvent, useState} from "react";
+import { Container } from "react-bootstrap";
 
-// const [secretId, setSecretId] = useState<number>();
-
-    // function geURLParam(): number | null{
-    //     const queryParams = new URLSearchParams(location.search);
-    //     const param = queryParams.get('id');
-    //     const secretId = param !== null ? parseInt(param) : 0;
-    //     // setSecretId(parseInt(param));
-    //     return secretId;
-    // }
 
 export default function SecretComponent() {
 
@@ -17,8 +9,10 @@ export default function SecretComponent() {
 
     const urlString = window.location.search;
     const urlParams = new URLSearchParams(urlString);
-    const param = urlParams.get('id');
+    const param = urlParams.get('secretid');
     const secretId = param !== null ? parseInt(param) : 0;
+    console.log("///////////////////////////");
+
     if(secretId !== 0) {
 
         fetch("http://localhost:8090/secrets/secretid="+secretId,{
@@ -26,19 +20,37 @@ export default function SecretComponent() {
             headers:{"Content-Type":"application/json"}
         }).then((response) => response.text())
             .then((responseText) => {
+            JSON.parse(responseText, (key, value) => {
+                if (key === "secretText" ) {
+                    setSecretText(value);
+                    return value;
+                }
+                return value;
+                });
 
-            console.log(responseText);
+            console.log("=========================================");
+            console.log({secretText});      
+            createHTMLObject(secretText);
+            
 
-        })
+        });
+    }
+
+    function createHTMLObject(secretText:string) {
+        const parentObject = document.getElementsByClassName('container')[0];
+        const childObject = document.createElement('div');
+        childObject.innerHTML = `
+            <h2>Your friend send some information for you: </h2>
+            <h3>`+secretText+`</h3>
+        `;
+        parentObject.appendChild(childObject);
     }
 
     return (
-            <>
-
-            </>
+            <Container>
+                <div>Hi</div>
+            </Container>
     );
-
-
 
 }
 

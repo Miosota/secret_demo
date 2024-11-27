@@ -53,7 +53,7 @@ export default function CreateSecretComponent() {
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>Generate Link</Button>
             </Form>
-            <h1 className="link_to_share">Share with your friends: <a href={linkToShare}>{linkToShare}</a></h1>
+            <h1 className="link_to_share">Share with your friends: <a href={linkToShare} target="_blank">{linkToShare}</a></h1>
         </Container>
     );
 }

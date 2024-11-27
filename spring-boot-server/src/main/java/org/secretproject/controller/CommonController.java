@@ -59,7 +59,7 @@ public class CommonController {
         .scheme("http")
         .host("localhost:3000")
         .path("/secrets")
-        .queryParam("id", secret.getId()).build();
+        .queryParam("secretid", secret.getId()).build();
 
     return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
