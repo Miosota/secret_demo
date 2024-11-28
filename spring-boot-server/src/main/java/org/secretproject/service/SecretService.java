@@ -24,13 +24,13 @@ public class SecretService {
 
     public Secret getSecretById(Long id){        
         Secret foundSecret = secretRepository.findById(id).orElse(null);
-        if (foundSecret != null && foundSecret.getTimesToView()>0) {
+        if (foundSecret != null) {
             if (foundSecret.getTimesToView()>0) {
                 int timesToView = foundSecret.getTimesToView() - 1;
                 foundSecret.setTimesToView(timesToView);
                 secretRepository.save(foundSecret);
             } else {
-                foundSecret.setSecretText(null);
+                foundSecret.setSecretText("");
                 secretRepository.save(foundSecret);
             }
             
