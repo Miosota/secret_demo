@@ -12,6 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>org.secretproject.SecretDemoApp</start-class>
     </properties>
 
 <dependencies>
@@ -69,7 +70,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
+                <configuration>
+                    <archive>
+                    <manifest>
+                        <mainClass>org.secretproject.SecretDemoApp</mainClass>
+                        <layout>JAR</layout>
+                    </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
