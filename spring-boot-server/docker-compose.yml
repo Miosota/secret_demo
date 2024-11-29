@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  secret_demo_backend:
+    image: secret_demo_backend:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    depends_on:
+      - service-db
+    environment:
+      - SERVER_PORT= 8090
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/secret_demo
+
+  service-db:
+      image: postgres:14.7-alpine
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: admin
+      ports:
+        - "15432:5432"
+      volumes:
+        - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+        - db-data:/var/lib/postgresql/data
+      restart: unless-stopped
+    
+volumes:
+  db-data:
