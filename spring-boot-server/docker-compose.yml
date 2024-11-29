@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  secret_demo_frontend:
+    image: secret_demo_frontend:0.0.1
+    build: ../react-client
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_moduls
+      - ../react-client:/app
+
   secret_demo_backend:
     image: secret_demo_backend:0.0.1
     build:
