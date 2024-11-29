@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+import "../styles/createsecret.css";
+
 export default function CreateSecretComponent() {
 
     const [userName, setName] = useState<string>('');
@@ -29,6 +31,7 @@ console.log("-----------------------");
     }
 
     return (
+        <>
         <Container>
             <Form>
                 <Form.Group className="userName">
@@ -53,8 +56,9 @@ console.log("-----------------------");
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>Generate Link</Button>
             </Form>
-            <h1 className="link_to_share">Share with your friends: <a href={linkToShare}>{linkToShare}</a></h1>
         </Container>
+        <h1 className="link_to_share">Share with your friends: <a href={linkToShare}>{linkToShare}</a></h1>
+        </>
     );
 }
 
