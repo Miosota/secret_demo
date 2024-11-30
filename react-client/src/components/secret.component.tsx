@@ -1,4 +1,4 @@
-import  {useState} from "react";
+import "../styles/secret.css";
 import { Container } from "react-bootstrap";
 
 
@@ -29,8 +29,10 @@ export default function SecretComponent() {
             const parentObject = document.getElementsByClassName('container')[0];
             const childObject = document.createElement('div');
             childObject.innerHTML = `
-                <h2>Your friend send some information for you: </h2>
-                <h3>`+secretText+`</h3>
+                <div class="found-secret">
+                    <h2>Your friend send some information for you: </h2>
+                    <h3>`+secretText+`</h3>
+                </div>
             `;
             parentObject.appendChild(childObject); 
            
