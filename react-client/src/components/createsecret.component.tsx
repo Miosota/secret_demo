@@ -12,7 +12,7 @@ export default function CreateSecretComponent() {
     const [secretText, setSecretText] = useState<string>('');
     const [timesToView, setTimesToView] = useState<number>();
     const [linkToShare, setLinkToShare] = useState<string>();
-console.log("-----------------------");
+
     const handleClick=(e: React.FormEvent<HTMLButtonElement>)=> {
         e.preventDefault();
         const user={userName};
