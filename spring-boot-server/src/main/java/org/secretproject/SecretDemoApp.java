@@ -20,28 +20,7 @@ public class SecretDemoApp {
     
     public static void main(String[] args) {
         SpringApplication.run(SecretDemoApp.class, args);
-        System.out.println("Hi ");
+        System.out.println("Started App");
     }
 
-    // @Bean
-    // public CommandLineRunner demo() {
-    //     return args -> {
-    //         User newUser = new User("TestUser");
-    //         userService.createUser(newUser);
-
-    //         Secret testSecret = new Secret(newUser,"secretText", 3);
-    //         secretService.createSecret(testSecret);
-            
-    //         System.out.println("Hi again");
-
-    //         User savedUser = userService.getUserById(newUser.getId());
-    //         System.out.println("Saved User: " + savedUser);
-
-
-    //         Secret savedSecret = secretService.getSecretById(testSecret.getId());
-    //         System.out.println("Saved Secret: " + savedSecret);
-    //     };
-    // }
-
-  
 }

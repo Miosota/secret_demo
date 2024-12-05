@@ -13,11 +13,6 @@ public class SecretService {
     @Autowired(required = false)
     SecretRepository secretRepository;
 
-    // @Autowired
-    // public SecretService(SecretRepository secretRepository) {
-    //     this.secretRepository = secretRepository;
-    // }
-
     public List<Secret> getAllSecrets() {
         return secretRepository.findAll();
     }

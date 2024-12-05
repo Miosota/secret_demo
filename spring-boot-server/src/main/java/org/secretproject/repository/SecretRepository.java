@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SecretRepository extends JpaRepository<Secret, Long>{
-    //some methods to work with data base
 
 }

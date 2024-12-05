@@ -53,8 +53,8 @@ public class CommonController {
         entityManager.clear();
 
         userService.createUser(user);
-        System.out.println("Test : userId:"+user.getId());
         secretService.createSecret(secret);
+        //generate url with user's secret text
         UriComponents builder = UriComponentsBuilder.newInstance()
         .scheme("http")
         .host("localhost:3000")
